@@ -11,7 +11,7 @@ class TodoItem extends React.Component{
                 <div className={'dueDate'}>Finish till: {todo.dueDate}</div>
                 <div className={'title' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}</div>
                 <div className={'task' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.text}</div>
-                <div className ={'dateOfCreation'}>Created: {todo.dateOfCreation}</div>
+                <div className ={'dateOfCreation'}>Created: {todo.createdAt}</div>
 
             </div>
         );

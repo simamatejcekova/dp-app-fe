@@ -2,7 +2,8 @@ import React from 'react';
 import TodoList from'./TodoList/TodoList.js';
 import AddTodo from'./AddTodo/AddTodo.js';
 import Navbar from'./Navbar/Navbar.js';
-// import moment from "moment";
+import axios from '../node_modules/axios';
+import moment from "moment";
 
 import './App.css';
 
@@ -26,32 +27,31 @@ class App extends React.Component{
     );
   }
 
-  componentDidMount = () => {
-    const kralicek = localStorage.getItem('localStorageTodos');
-    if(kralicek){
-      const savedTodos = JSON.parse(kralicek);
-      this.setState({todos: savedTodos}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
-      console.log('bar' + this.state.todos);
-    }else{
-      console.log('No todos');
+  componentDidMount = async () => {
+    // const kralicek = localStorage.getItem('localStorageTodos');
+    const kralicek = await axios.get("http://localhost:8080/todos");
+    if(kralicek.data){
+      console.log(kralicek.data);
+      this.setState({todos: kralicek.data}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
     }
   };
 
   addTask = async (todo) => {
-    await this.setState({todos: [...this.state.todos, {
-        title: todo.title,
-        text: todo.text,
-        // 3. add new field due_date: to-do.date, step 4 below
-        // isFinished: false,
-        // dateOfCreation: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
-        dueDate: todo.dueDate
-      }]
-    });
+    let newTask = {
+      title: todo.title,
+      text: todo.text,
+      // 3. add new field due_date: to-do.date, step 4 below
+      isFinished: false,
+      createdAt: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+      dueDate: todo.dueDate
+    };
+
     console.log(this.state.todos);
-    let todosString = JSON.stringify(this.state.todos);
-    localStorage.setItem('localStorageTodos', todosString); //pristupime do kniznice(localStorage), zalozime policu s nazvom LocalStorageTodos a vlozime do nich todos (ktore su uz stringami)
-    console.log(localStorage.getItem('localStorageTodos'));
-//todo change from localstorage to post call
+    let taskId = await axios.post("http://localhost:8080/todos", newTask);
+    newTask.id = taskId.data;
+    await this.setState({todos: [...this.state.todos, newTask]
+    });
+
   };
 
   updateTodo = async (todo) => {
