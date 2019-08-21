@@ -1,7 +1,8 @@
 import React from 'react';
 import TodoList from'./TodoList/TodoList.js';
 import AddTodo from'./AddTodo/AddTodo.js';
-import moment from "moment";
+import Navbar from'./Navbar/Navbar.js';
+// import moment from "moment";
 
 import './App.css';
 
@@ -17,9 +18,11 @@ class App extends React.Component{
   render(){
     return(
         <div>
+          <Navbar/>
           <AddTodo addTaskFn={this.addTask}/>
           <TodoList updateTodoFn={this.updateTodo} todos = {this.state.todos}/>
         </div>
+
     );
   }
 
