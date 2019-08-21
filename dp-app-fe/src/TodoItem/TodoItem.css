@@ -1,0 +1,23 @@
+.task {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.title {
+    margin: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.finished {
+    text-decoration: line-through;
+}
+
+.dueDate{
+    margin: 10px;
+}
+
+.dateOfCreation{
+    margin: 10px;
+}
+
