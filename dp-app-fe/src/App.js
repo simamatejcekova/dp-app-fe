@@ -59,7 +59,7 @@ class App extends React.Component{
       title: todo.title,
       text: todo.text,
       // 3. add new field due_date: to-do.date, step 4 below
-      isFinished: false,
+      finished: false,
       createdAt: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
       dueDate: todo.dueDate
     };
@@ -74,23 +74,22 @@ class App extends React.Component{
 
   updateTodo = async (todo) => {
     const newTodos = this.state.todos.map(_todo => {
-      if(todo === _todo)
-        return{
+      if(todo === _todo) {
+        axios.patch("http://localhost:8080/todos/" + todo.id, {finished: !todo.finished});
+        return {
           title: todo.title,
           text: todo.text,
-          isFinished: !todo.isFinished,
-          dateOfCreation: todo.dateOfCreation,
+          finished: !todo.finished,
+          createdAt: todo.createdAt,
           dueDate: todo.dueDate
         };
+      }
       //4.add dueDate: to-do.dueDate to return
       else
         return _todo
 
     });
     await this.setState({todos:newTodos});
-    let updatedTodoString = JSON.stringify(this.state.todos);
-    localStorage.setItem('localStorageTodos', updatedTodoString);
-
   };
 }
 export default App;

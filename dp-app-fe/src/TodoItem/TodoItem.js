@@ -6,10 +6,11 @@ class TodoItem extends React.Component{
 
         const todo = this.props.todo;
         return(
-            <div className = {'todosContainer'}>
+            <div className = {'todoContainer'}>
+
                 <div className={'dueDate'}>Finish till: {todo.dueDate}</div>
-                <div className={'title' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}</div>
-                <div className={'task' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.text}</div>
+                <div className={'title' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}</div>
+                <div className={'task' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.text}</div>
                 <div className ={'dateOfCreation'}>Created: {todo.createdAt}</div>
 
             </div>
