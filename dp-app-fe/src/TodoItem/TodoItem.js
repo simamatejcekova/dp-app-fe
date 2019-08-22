@@ -7,7 +7,6 @@ class TodoItem extends React.Component{
         const todo = this.props.todo;
         return(
             <div className = {'todosContainer'}>
-                <p>-----------------</p>
                 <div className={'dueDate'}>Finish till: {todo.dueDate}</div>
                 <div className={'title' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}</div>
                 <div className={'task' + (todo.isFinished ? ' finished' : '')} onClick={this.markFinished}>{todo.text}</div>

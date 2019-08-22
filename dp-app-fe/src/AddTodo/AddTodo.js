@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddTodo.css';
 
 class AddTodo extends React.Component{
 
@@ -13,20 +14,21 @@ class AddTodo extends React.Component{
 
     render(){
         return(
-            <div className={'addTodoContainer'}>
-                <form onSubmit={(e) => this.submitTodo(e)}>
-                    <div className={'dueDateArea'}>
-                        <input id='addDueDate' onChange={(eventDueDate) => this.updateDate(eventDueDate)} type={'date'} placeholder={'due date'}/>
+<div className='form'>
+                <form  onSubmit={(e) => this.submitTodo(e)}>
+                    <div>
+                        <input className={'dueDateArea'} id='addDueDate' onChange={(eventDueDate) => this.updateDate(eventDueDate)} type={'date'} placeholder={'due date'}/>
                     </div>
-                    <div className={'titleArea'}>
-                        <input id='addTodoTitle' onChange={(eventTitle) => this.updateTitle(eventTitle)} type={'text'} placeholder={'title'} />
+                    <div>
+                        <input className={'titleArea'} id='addTodoTitle' onChange={(eventTitle) => this.updateTitle(eventTitle)} type={'text'} placeholder={'title'} />
                     </div>
-                    <div className={'descriptionArea'}>
-                        <textarea id='addTodoText' onChange={(eventText) => this.updateText(eventText)}  placeholder={'description'} />
+                    <div >
+                        <textarea className={'descriptionArea'} id='addTodoText' onChange={(eventText) => this.updateText(eventText)}  placeholder={'description'} />
                     </div>
-                    <button type={'submit'}>add</button>
+                    <button className='addButton' type={'submit'}>add</button>
                 </form>
-            </div>
+</div>
+
         );
     }
     // 1. add date with id='addDate'

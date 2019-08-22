@@ -1,0 +1,61 @@
+
+
+.dueDateArea {
+    /*background: lightblue;*/
+    color: black;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 3.5em;
+    border: 2px solid lightpink;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.titleArea{
+    /*background: lightblue;*/
+    color: black;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em ;
+    border: 2px solid lightpink;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.descriptionArea{
+    /*background: lightblue;*/
+    color: black;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid lightpink;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.addButton{
+    /*background: lightpink;*/
+    color:white;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid lightpink;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.addButton{
+    background: hotpink;
+    color:white;
+    font-size: 1em;
+    margin: 1em;
+    padding: 0.25em 1em;
+    border: 2px solid hotpink;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+

@@ -5,7 +5,6 @@ import AddTodo from'./AddTodo/AddTodo.js';
 import Navbar from'./Navbar/Navbar.js';
 import axios from '../node_modules/axios';
 import moment from "moment";
-
 import './App.css';
 
 class App extends React.Component{
@@ -16,6 +15,35 @@ class App extends React.Component{
       todos: []
     };
   }
+
+  render(){
+    return(
+        <HashRouter>
+          <div className ="App">
+            <Navbar/>
+
+            <div>
+              <Switch>
+                <Route
+                    path ="/"
+                    exact
+                    render={() =>(
+                        <TodoList updateTodoFn={this.updateTodo}
+                                  todos = {this.state.todos}/>
+                    ) }
+                />
+                <Route
+                    path="/add"
+                    render={() => <AddTodo addTaskFn={this.addTask}/> }
+
+                />
+              </Switch>
+            </div>
+          </div>
+        </HashRouter>
+    );
+  }
+
 
   componentDidMount = async () => {
     // const kralicek = localStorage.getItem('localStorageTodos');
@@ -64,35 +92,5 @@ class App extends React.Component{
     localStorage.setItem('localStorageTodos', updatedTodoString);
 
   };
-
-  render(){
-    return(
-        <HashRouter>
-        <div className ="App">
-          <Navbar/>
-
-          <div>
-            <Switch>
-              <Route
-                path ="/"
-                exact
-                render={() =>(
-                    <TodoList updateTodoFn={this.updateTodo}
-                              todos = {this.state.todos}/>
-                ) }
-                />
-                <Route
-                  path="/add"
-                  render={() => <AddTodo addTaskFn={this.addTask}/> }
-
-          />
-            </Switch>
-        </div>
-        </div>
-        </HashRouter>
-    );
-  }
-
-
 }
 export default App;
