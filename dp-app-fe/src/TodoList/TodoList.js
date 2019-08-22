@@ -12,7 +12,7 @@ class TodoList extends React.Component{
                 {
                     todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"
                         return(
-                            <TodoItem updateTodoFn ={this.updateTodo} key={_index} todo ={_todo}/>
+                            <TodoItem updateTodoFn ={this.updateTodo} deleteTaskFn={this.deleteTodo} key={_index} todo ={_todo}/>
                         )
                     })
                 }
@@ -22,7 +22,11 @@ class TodoList extends React.Component{
 
     updateTodo =(todo)=>{
         this.props.updateTodoFn(todo);
-    }
+    };
+
+    deleteTodo =(todo)=>{
+        this.props.deleteTodoFn(todo);
+    };
 
 }
 export default TodoList;

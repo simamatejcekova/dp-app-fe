@@ -29,6 +29,7 @@ class App extends React.Component{
                     exact
                     render={() =>(
                         <TodoList updateTodoFn={this.updateTodo}
+                                  deleteTodoFn={this.deleteTask}
                                   todos = {this.state.todos}/>
                     ) }
                 />
@@ -69,6 +70,23 @@ class App extends React.Component{
     newTask.id = taskId.data;
     await this.setState({todos: [...this.state.todos, newTask]
     });
+
+  };
+
+  deleteTask = async (todo) => {
+    axios.delete("http://localhost:8080/todos/" + todo.id);
+
+    const newTodos = this.state.todos.map(_todo => {
+      if(todo === _todo) {
+        return null; //i have to return SOMETHING, even if i dont want to have anything in place of the todo
+      }
+      else
+        return _todo
+    //
+    }
+    );
+    await this.setState({todos:newTodos.filter(Boolean)}); //by using .filter(Boolean), I get rid of the null I returned on line 81
+    console.log('deleted succesfully');
 
   };
 

@@ -14,7 +14,7 @@ class AddTodo extends React.Component{
 
     render(){
         return(
-<div className='form'>
+            <div className='form'>
                 <form  onSubmit={(e) => this.submitTodo(e)}>
                     <div>
                         <input className={'dueDateArea'} id='addDueDate' onChange={(eventDueDate) => this.updateDate(eventDueDate)} type={'date'} placeholder={'due date'}/>
@@ -27,7 +27,7 @@ class AddTodo extends React.Component{
                     </div>
                     <button className='addButton' type={'submit'}>add</button>
                 </form>
-</div>
+            </div>
 
         );
     }
