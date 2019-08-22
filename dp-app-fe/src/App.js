@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Switch, Route } from "react-router-dom";
 import TodoList from'./TodoList/TodoList.js';
 import AddTodo from'./AddTodo/AddTodo.js';
 import Navbar from'./Navbar/Navbar.js';
@@ -14,17 +15,6 @@ class App extends React.Component{
     this.state = {
       todos: []
     };
-  }
-
-  render(){
-    return(
-        <div>
-          <Navbar/>
-          <AddTodo addTaskFn={this.addTask}/>
-          <TodoList updateTodoFn={this.updateTodo} todos = {this.state.todos}/>
-        </div>
-
-    );
   }
 
   componentDidMount = async () => {
@@ -73,6 +63,36 @@ class App extends React.Component{
     let updatedTodoString = JSON.stringify(this.state.todos);
     localStorage.setItem('localStorageTodos', updatedTodoString);
 
+  };
+
+  render(){
+    return(
+        <HashRouter>
+        <div className ="App">
+          <Navbar/>
+
+          <div>
+            <Switch>
+              <Route
+                path ="/"
+                exact
+                render={() =>(
+                    <TodoList updateTodoFn={this.updateTodo}
+                              todos = {this.state.todos}/>
+                ) }
+                />
+                <Route
+                  path="/add"
+                  render={() => <AddTodo addTaskFn={this.addTask}/> }
+
+          />
+            </Switch>
+        </div>
+        </div>
+        </HashRouter>
+    );
   }
+
+
 }
 export default App;
