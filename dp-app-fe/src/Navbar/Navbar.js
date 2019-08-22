@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     render () {
@@ -8,15 +8,15 @@ class Navbar extends Component {
                 <div>
                     <ul>
                         <li>
-                            {/*<Link className="nav-link" to="/">*/}
+                            <Link className="nav-link" to="/">
                                 Todos
-                            {/*</Link>*/}
+                            </Link>
                         </li>
 
                         <li>
-                            {/*<Link className="nav-link" to="/add">*/}
+                            <Link className="nav-link" to="/add">
                                 Add todo
-                            {/*</Link>*/}
+                            </Link>
                         </li>
 
                     </ul>
