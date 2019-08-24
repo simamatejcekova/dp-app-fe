@@ -3,8 +3,10 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import TodoList from'./TodoList/TodoList.js';
 import AddTodo from'./AddTodo/AddTodo.js';
 import Navbar from'./Navbar/Navbar.js';
-import axios from '../node_modules/axios';
+import SearchList from'./SearchList/SearchList.js';
+import axios from 'axios';
 import moment from "moment";
+import Fuse from '../node_modules/fuse.js';
 import './App.css';
 
 class App extends React.Component{
@@ -38,13 +40,20 @@ class App extends React.Component{
                     render={() => <AddTodo addTaskFn={this.addTask}/> }
 
                 />
+                <Route
+                    path={"/search"}
+                    render={()=><SearchList updateTodoFn={this.updateTodo}
+                                            deleteTodoFn={this.deleteTask}
+                                            searchFn={this.searchTodos}
+                                            // todos = {this.state.todos}
+                    />}
+                />
               </Switch>
             </div>
           </div>
         </HashRouter>
     );
   }
-
 
   componentDidMount = async () => {
     // const kralicek = localStorage.getItem('localStorageTodos');
@@ -53,6 +62,27 @@ class App extends React.Component{
       console.log(kralicek.data);
       this.setState({todos: kralicek.data}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
     }
+  };
+
+  searchTodos = (searchPattern) => {
+    console.log("intiating searchTodos function");
+    let options = {
+      shouldSort: true,
+      threshold: 0.2,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 2,
+      keys: [
+        "title",
+        "text",
+        "dueDate"
+      ]
+    };
+    let fuse = new Fuse(this.state.todos, options); // "list" is the item array
+    let result = fuse.search(searchPattern);
+    console.log(result);
+    return result;
   };
 
   addTask = async (todo) => {
@@ -77,13 +107,13 @@ class App extends React.Component{
     axios.delete("http://localhost:8080/todos/" + todo.id);
 
     const newTodos = this.state.todos.map(_todo => {
-      if(todo === _todo) {
-        return null; //i have to return SOMETHING, even if i dont want to have anything in place of the todo
-      }
-      else
-        return _todo
-    //
-    }
+          if(todo === _todo) {
+            return null; //i have to return SOMETHING, even if i dont want to have anything in place of the todo
+          }
+          else
+            return _todo
+          //
+        }
     );
     await this.setState({todos:newTodos.filter(Boolean)}); //by using .filter(Boolean), I get rid of the null I returned on line 81
     console.log('deleted succesfully');

@@ -10,17 +10,23 @@ class Navbar extends Component {
                 <div >
                     <ul >
                         <li className="nav-item-todos">
-                            <Link className="nav-link" to="/">
+                            <Link className={"nav-link"} to={"/"}>
                                 Todos
                             </Link>
                         </li>
 
                         <li className = "nav-item-add">
-                            <Link className="nav-link" to="/add">
+                            <Link className={"nav-link"} to={"/add"}>
                                 Add todo
                             </Link>
                         </li>
 
+                        <li className = "nav-item-search">
+                            <Link className={"nav-link"} to={"/search"}>
+                                Search
+                            </Link>
+
+                        </li>
                     </ul>
                 </div>
             </nav>

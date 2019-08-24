@@ -1,5 +1,6 @@
 import React from 'react';
 import './AddTodo.css';
+import moment from 'moment';
 
 class AddTodo extends React.Component{
 
@@ -17,13 +18,21 @@ class AddTodo extends React.Component{
             <div className='form'>
                 <form  onSubmit={(e) => this.submitTodo(e)}>
                     <div>
-                        <input className={'dueDateArea'} id='addDueDate' onChange={(eventDueDate) => this.updateDate(eventDueDate)} type={'date'} placeholder={'due date'}/>
+                        <input className={'dueDateArea'} id='addDueDate'
+                               onChange={(eventDueDate) => this.updateDate(eventDueDate)}
+                               type={'date'} min={moment().format("YYYY-MM-DD")} placeholder={'due date'} required
+                        />
                     </div>
                     <div>
-                        <input className={'titleArea'} id='addTodoTitle' onChange={(eventTitle) => this.updateTitle(eventTitle)} type={'text'} placeholder={'title'} />
+                        <input className={'titleArea'} id='addTodoTitle'
+                               onChange={(eventTitle) => this.updateTitle(eventTitle)}
+                               type={'text'} placeholder={'title'} required
+                        />
                     </div>
                     <div >
-                        <textarea className={'descriptionArea'} id='addTodoText' onChange={(eventText) => this.updateText(eventText)}  placeholder={'description'} />
+                        <textarea className={'descriptionArea'} id='addTodoText'
+                                  onChange={(eventText) => this.updateText(eventText)}
+                                  placeholder={'description'} />
                     </div>
                     <button className='addButton' type={'submit'}>add</button>
                 </form>
