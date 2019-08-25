@@ -17,7 +17,7 @@ class Navbar extends Component {
 
                         <li className = "nav-item-add">
                             <Link className={"nav-link"} to={"/add"}>
-                                Add todo
+                                New Todo
                             </Link>
                         </li>
 

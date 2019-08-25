@@ -1,5 +1,7 @@
 import React from 'react';
 import TodoItem from'../TodoItem/TodoItem.js';
+import {withRouter} from 'react-router-dom';
+import plus from '../img/plusSign.png';
 
 class TodoList extends React.Component{
 
@@ -9,6 +11,9 @@ class TodoList extends React.Component{
 
         return(
             <div className={'todoListContainer'}>
+                <div className={'speech-bubble'}>
+                    <img src={plus} alt={'add new todo'} margin={'200px;'} onClick={() => this.imageClick()}/>
+                </div>
                 {
                     todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"
                         return(
@@ -20,6 +25,14 @@ class TodoList extends React.Component{
         );
     }
 
+    imageClick(){
+        this.nextPath('/add');
+
+    }
+    nextPath(path){
+        this.props.history.push(path);
+    }
+
     updateTodo =(todo)=>{
         this.props.updateTodoFn(todo);
     };
@@ -29,4 +42,4 @@ class TodoList extends React.Component{
     };
 
 }
-export default TodoList;
+export default withRouter(TodoList);

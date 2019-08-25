@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from'../TodoItem/TodoItem.js';
+import './SearchList.css'
 
 class SearchList extends React.Component{
 
@@ -16,7 +17,7 @@ class SearchList extends React.Component{
 
         return(
             <div>
-                <input className={'searchField'} id='search'
+                <input className={'search-bubble'} id='search'
                        onChange={(eventSearch) => this.searchTodo(eventSearch)}
                        type={'text'} placeholder={'search'}/>
                 <div className={'todoListContainer'}>
@@ -28,7 +29,7 @@ class SearchList extends React.Component{
                                 )
                             })
                         ):(
-                            <p>nothing found</p>
+                            <p className={'search-bubble'}>nothing found</p>
                         )
                     ):(
                         <p></p>

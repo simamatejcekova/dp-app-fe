@@ -1,62 +1,67 @@
 
 
 .dueDateArea {
-    /*background: lightblue;*/
-    color: black;
-    font-size: 1em;
+    background-image: radial-gradient(white, #fff9b4);
     margin: 1em;
-    padding: 0.25em 3.5em;
-    border: 2px solid lightpink;
-    border-radius: 7px;
-    cursor: pointer;
+    padding: 0.5em 1em;
+    border:solid 2px #000;
+    border-radius:2em;
+    cursor: text;
+    width: 600px;
 }
 
 .titleArea{
-    /*background: lightblue;*/
-    color: black;
-    font-size: 1em;
+    background-image: radial-gradient(white, #fff9b4);
     margin: 1em;
-    padding: 0.25em 1em ;
-    border: 2px solid lightpink;
-    border-radius: 7px;
-    cursor: pointer;
+    padding: 0.5em 1em ;
+    border:solid 2px #000;
+    border-radius:3em;
+    cursor: text;
+    width: 600px;
 }
 
 .descriptionArea{
-    /*background: lightblue;*/
-    color: black;
-    font-size: 1em;
+    background-image: radial-gradient(white, #fff9b4);
     margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid lightpink;
-    border-radius: 7px;
-    cursor: pointer;
+    padding: 0.5em 1em;
+    border:solid 2px #000;
+    border-radius:2em;
+    cursor: text;
+    width: 600px;
+}
 
+.pickPriority{
+    display: inline-block;
+    background-image: radial-gradient(white, #fff9b4);
+    margin: 1em;
+    padding: 0.5em 1em;
+    border:solid 2px #000;
+    border-radius:2em;
+    cursor: text;
+    width: 150px;
 }
 
 .addButton{
-    /*background: lightpink;*/
-    color:white;
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid lightpink;
-    border-radius: 7px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.addButton{
+    display: inline-block;
     background: hotpink;
     color:white;
     font-size: 1em;
-    margin: 1em;
+    margin: 0.6em;
     padding: 0.25em 1em;
-    border: 2px solid hotpink;
+    border: 2px solid lightpink;
     border-radius: 7px;
     text-decoration: none;
     cursor: pointer;
-
 }
 
+.search-bubble {
+    background-image: radial-gradient(white, #fff9b4);
+    border:solid 2px #000;
+    border-radius:3em;
+    display:inline-block;
+    margin: 2em;
+    padding:.5em 1em;
+    position:relative;
+    width: 600px;
+}
 

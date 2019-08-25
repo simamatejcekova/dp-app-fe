@@ -1,0 +1,10 @@
+.search-bubble {
+    background-image: radial-gradient(white, #fff9b4);
+    border:solid 2px #000;
+    border-radius:3em;
+    display:inline-block;
+    margin: 2em;
+    padding:.5em 1em;
+    position:relative;
+    width: 600px;
+}

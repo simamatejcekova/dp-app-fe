@@ -1,5 +1,6 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';import './AddTodo.css';
+import {withRouter} from 'react-router-dom';
+import './AddTodo.css';
 import moment from 'moment';
 
 class AddTodo extends React.Component{
@@ -8,7 +9,8 @@ class AddTodo extends React.Component{
         super();
         this.state ={
             title:'',
-            text:''
+            text:'',
+            priority:''
 
         };
     }
@@ -32,9 +34,18 @@ class AddTodo extends React.Component{
                     <div >
                         <textarea className={'descriptionArea'} id='addTodoText'
                                   onChange={(eventText) => this.updateText(eventText)}
-                                  placeholder={'description'} />
+                                  type={'text'} placeholder={'description'} />
                     </div>
-                    <button className='addButton' type={'submit'} onClick={()=>this.nextPath('/')}>add</button>
+                    <div >
+                        <select className={'pickPriority'} id='choosePriority'
+                                  onChange={(option) => this.updatePriority(option)}>
+                            <option>PRIORITY</option>
+                            <option>high</option>
+                            <option>mid</option>
+                            <option>low</option>
+                        </select>
+                        <button className='addButton' type={'submit'}>ADD TODO</button>
+                    </div>
                 </form>
             </div>
 
@@ -44,6 +55,13 @@ class AddTodo extends React.Component{
     nextPath(path){
         this.props.history.push(path);
     }
+
+    updatePriority = (e) =>{
+        if(e.target.value !== 'PRIORITY'){
+            console.log('prdiky prd');
+        this.setState({priority: e.target.value});
+        }
+    };
 
     updateTitle = (e) =>{
         this.setState({title: e.target.value});
@@ -62,9 +80,10 @@ class AddTodo extends React.Component{
         e.preventDefault();
         console.log('submit', this.state);
         this.props.addTaskFn(this.state);
-        document.getElementById('addTodoTitle').value='';
-        document.getElementById('addTodoText').value='';
-        document.getElementById('addDueDate').value='';
+        // document.getElementById('addTodoTitle').value='';
+        // document.getElementById('addTodoText').value='';
+        // document.getElementById('addDueDate').value='';
+        this.nextPath('/');
     }
 
 }

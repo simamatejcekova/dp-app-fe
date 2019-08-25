@@ -45,7 +45,7 @@ class App extends React.Component{
                     render={()=><SearchList updateTodoFn={this.updateTodo}
                                             deleteTodoFn={this.deleteTask}
                                             searchFn={this.searchTodos}
-                                            // todos = {this.state.todos}
+                        // todos = {this.state.todos}
                     />}
                 />
               </Switch>
@@ -88,10 +88,11 @@ class App extends React.Component{
       text: todo.text,
       // 3. add new field due_date: to-do.date, step 4 below
       finished: false,
-      createdAt: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
-      dueDate: todo.dueDate
+      createdAt: moment().format("MMM DD, YYYY, h:mm:ss a"),
+      dueDate: todo.dueDate,
+      priority: todo.priority
     };
-
+    console.log(newTask);
     let taskId = await axios.post("http://localhost:8080/todos", newTask);
     newTask.id = taskId.data;
     await this.setState({todos: [...this.state.todos, newTask]
@@ -123,7 +124,9 @@ class App extends React.Component{
           text: todo.text,
           finished: !todo.finished,
           createdAt: todo.createdAt,
-          dueDate: todo.dueDate
+          dueDate: todo.dueDate,
+          completedAt: moment().format("MMM DD, YYYY, h:mm:ss a"),
+          priority: todo.priority
         };
       }
       //4.add dueDate: to-do.dueDate to return
