@@ -7,7 +7,8 @@ class SearchList extends React.Component{
         super();
         this.state ={
             search:'',
-            todos:[]
+            todos:[],
+            searchCount:0
         };
     }
 
@@ -23,12 +24,19 @@ class SearchList extends React.Component{
                 </form>
                 <div className={'todoListContainer'}>
 
-                    {
-                        this.state.todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"
-                            return(
-                                <TodoItem updateTodoFn ={this.updateTodo} deleteTaskFn={this.deleteTodo} key={_index} todo ={_todo}/>
-                            )
-                        })
+                    {this.state.searchCount>0 ? (
+                        this.state.todos.length>0 ?(
+                            this.state.todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"
+                                return(
+                                    <TodoItem updateTodoFn ={this.updateTodo} deleteTaskFn={this.deleteTodo} key={_index} todo ={_todo}/>
+                                )
+                            })
+                        ):(
+                            <p>nothing found</p>
+                        )
+                    ):(
+                        <p></p>
+                    )
                     }
                 </div>
             </div>
@@ -48,9 +56,9 @@ class SearchList extends React.Component{
     };
 
     searchTodo =(e)=>{
-        console.log("starting search");
-        this.setState({todos: this.props.searchFn(this.state.search)});
-        console.log(this.state.todos);
+        console.log(this.state);
+        this.setState({todos: this.props.searchFn(this.state.search), searchCount: this.state.searchCount+1});
+        console.log(this.state);
         document.getElementById('search').value='';
         console.log("emptied searchbox");
     };
