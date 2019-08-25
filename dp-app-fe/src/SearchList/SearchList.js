@@ -16,14 +16,10 @@ class SearchList extends React.Component{
 
         return(
             <div>
-                <form  onSubmit={(e) => this.searchTodo(e)}>
-                    <input className={'searchField'} id='search'
-                           onChange={(eventSearch) => this.fillSearch(eventSearch)}
-                           type={'text'} placeholder={'search'}/>
-                    <button className='searchButton' type={'submit'}>search</button>
-                </form>
+                <input className={'searchField'} id='search'
+                       onChange={(eventSearch) => this.searchTodo(eventSearch)}
+                       type={'text'} placeholder={'search'}/>
                 <div className={'todoListContainer'}>
-
                     {this.state.searchCount>0 ? (
                         this.state.todos.length>0 ?(
                             this.state.todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"
@@ -43,10 +39,6 @@ class SearchList extends React.Component{
         );
     }
 
-    fillSearch =(e)=>{
-        this.setState({search: e.target.value});
-    };
-
     updateTodo =(todo)=>{
         this.props.updateTodoFn(todo);
     };
@@ -56,11 +48,8 @@ class SearchList extends React.Component{
     };
 
     searchTodo =(e)=>{
-        console.log(this.state);
+        this.setState({search: e.target.value});
         this.setState({todos: this.props.searchFn(this.state.search), searchCount: this.state.searchCount+1});
-        console.log(this.state);
-        document.getElementById('search').value='';
-        console.log("emptied searchbox");
     };
 
 }

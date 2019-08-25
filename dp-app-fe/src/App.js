@@ -59,13 +59,11 @@ class App extends React.Component{
     // const kralicek = localStorage.getItem('localStorageTodos');
     const kralicek = await axios.get("http://localhost:8080/todos");
     if(kralicek.data){
-      console.log(kralicek.data);
       this.setState({todos: kralicek.data}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
     }
   };
 
   searchTodos = (searchPattern) => {
-    console.log("intiating searchTodos function");
     let options = {
       shouldSort: true,
       threshold: 0.2,
@@ -81,7 +79,6 @@ class App extends React.Component{
     };
     let fuse = new Fuse(this.state.todos, options); // "list" is the item array
     let result = fuse.search(searchPattern);
-    console.log(result);
     return result;
   };
 
@@ -95,7 +92,6 @@ class App extends React.Component{
       dueDate: todo.dueDate
     };
 
-    console.log(this.state.todos);
     let taskId = await axios.post("http://localhost:8080/todos", newTask);
     newTask.id = taskId.data;
     await this.setState({todos: [...this.state.todos, newTask]
@@ -116,8 +112,6 @@ class App extends React.Component{
         }
     );
     await this.setState({todos:newTodos.filter(Boolean)}); //by using .filter(Boolean), I get rid of the null I returned on line 81
-    console.log('deleted succesfully');
-
   };
 
   updateTodo = async (todo) => {

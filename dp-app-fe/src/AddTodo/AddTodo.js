@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddTodo.css';
+import {withRouter} from 'react-router-dom';import './AddTodo.css';
 import moment from 'moment';
 
 class AddTodo extends React.Component{
@@ -34,14 +34,16 @@ class AddTodo extends React.Component{
                                   onChange={(eventText) => this.updateText(eventText)}
                                   placeholder={'description'} />
                     </div>
-                    <button className='addButton' type={'submit'}>add</button>
+                    <button className='addButton' type={'submit'} onClick={()=>this.nextPath('/')}>add</button>
                 </form>
             </div>
 
         );
     }
     // 1. add date with id='addDate'
-
+    nextPath(path){
+        this.props.history.push(path);
+    }
 
     updateTitle = (e) =>{
         this.setState({title: e.target.value});
@@ -66,4 +68,4 @@ class AddTodo extends React.Component{
     }
 
 }
-export default AddTodo;
+export default withRouter(AddTodo);
