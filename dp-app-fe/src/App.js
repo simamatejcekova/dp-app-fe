@@ -42,11 +42,11 @@ class App extends React.Component{
                 />
                 <Route
                     path={"/search"}
-                    render={()=><SearchList updateTodoFn={this.updateTodo}
-                                            deleteTodoFn={this.deleteTask}
-                                            searchFn={this.searchTodos}
-                        // todos = {this.state.todos}
-                    />}
+                    render={()=>(
+                        <SearchList updateTodoFn={this.updateTodo}
+                                    deleteTodoFn={this.deleteTask}
+                                    searchFn={this.searchTodos}/>
+                    ) }
                 />
               </Switch>
             </div>
@@ -59,7 +59,7 @@ class App extends React.Component{
     // const kralicek = localStorage.getItem('localStorageTodos');
     const kralicek = await axios.get("http://localhost:8080/todos");
     if(kralicek.data){
-      this.setState({todos: kralicek.data}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
+      await this.setState({todos: kralicek.data}); //setState hovori pristup na kluc(nase to-do), zmaz jeho value a uloz tam tuto novu, ktoru ti podavam
     }
   };
 
@@ -101,8 +101,9 @@ class App extends React.Component{
   };
 
   deleteTask = async (todo) => {
-    axios.delete("http://localhost:8080/todos/" + todo.id);
-
+    console.log('deleting');
+    await axios.delete("http://localhost:8080/todos/" + todo.id);
+    console.log('deleted');
     const newTodos = this.state.todos.map(_todo => {
           if(todo === _todo) {
             return null; //i have to return SOMETHING, even if i dont want to have anything in place of the todo
@@ -112,12 +113,14 @@ class App extends React.Component{
           //
         }
     );
+    console.log('created newTodos');
     await this.setState({todos:newTodos.filter(Boolean)}); //by using .filter(Boolean), I get rid of the null I returned on line 81
+    console.log('setting state');
   };
 
   updateTodo = async (todo) => {
     const newTodos = this.state.todos.map(_todo => {
-      if(todo === _todo) {
+      if(todo === _todo){
         axios.patch("http://localhost:8080/todos/" + todo.id, {finished: !todo.finished});
         return {
           title: todo.title,
@@ -126,7 +129,8 @@ class App extends React.Component{
           createdAt: todo.createdAt,
           dueDate: todo.dueDate,
           completedAt: moment().format("MMM DD, YYYY, h:mm:ss a"),
-          priority: todo.priority
+          priority: todo.priority,
+          id: todo.id
         };
       }
       //4.add dueDate: to-do.dueDate to return

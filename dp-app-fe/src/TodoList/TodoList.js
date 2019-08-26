@@ -12,7 +12,7 @@ class TodoList extends React.Component{
         return(
             <div className={'todoListContainer'}>
                 <div className={'speech-bubble'}>
-                    <img src={plus} alt={'add new todo'} margin={'200px;'} onClick={() => this.imageClick()}/>
+                    <img className={'plusSign'} src={plus} alt={'add new todo'} margin={'200px;'} onClick={() => this.imageClick()}/>
                 </div>
                 {
                     todos.map((_todo,_index)=>{ // podtrzitko patri k mapu, hovori "for each this do that"

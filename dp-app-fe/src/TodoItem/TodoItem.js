@@ -1,17 +1,28 @@
 import React from 'react';
 import './TodoItem.css';
+import moment from "moment";
+import badgeImg from '../img/badge_new.png';
+
+
 
 
 class TodoItem extends React.Component{
     render(){
 
+
+
         const todo = this.props.todo;
-        const items = ["left", "midleft", "middle", "midright", "right"];
+
+        let now = moment();
+
+        let difference = now.diff(todo.createdAt, "minutes");
+        const badge = (difference < 1440) ? <img className={'badge'} src={badgeImg}/> : <p></p>
+
         return(
-            <div className = {'speech-bubble ' + items[Math.floor(Math.random()*items.length)]}>
+            <div className = {'speech-bubble'}>
                 <br />
                 <form>
-                    <div className={'title' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}</div>
+                    <div className={'title' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}{badge}</div>
                     <div className={'task' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.text}</div>
                     <button className='deleteButton' id={'finish'} onClick={(e) => this.deleteDisableTodo(e)}>Finish</button>
                     <button className='deleteButton' id={'delete'} onClick={(e) => this.deleteDisableTodo(e)}>Delete</button>

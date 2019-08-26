@@ -40,17 +40,19 @@ class SearchList extends React.Component{
         );
     }
 
-    updateTodo =(todo)=>{
-        this.props.updateTodoFn(todo);
+    updateTodo =async (todo)=>{
+        await this.props.updateTodoFn(todo);
+        await this.setState({todos: this.props.searchFn(this.state.search)});
     };
 
-    deleteTodo =(todo)=>{
-        this.props.deleteTodoFn(todo);
+    deleteTodo =async (todo)=>{
+        await this.props.deleteTodoFn(todo);
+        await this.setState({todos: this.props.searchFn(this.state.search)});
     };
 
-    searchTodo =(e)=>{
-        this.setState({search: e.target.value});
-        this.setState({todos: this.props.searchFn(this.state.search), searchCount: this.state.searchCount+1});
+    searchTodo =async(e)=>{
+        await this.setState({search: e.target.value});
+        await this.setState({todos: this.props.searchFn(this.state.search), searchCount: this.state.searchCount+1});
     };
 
 }

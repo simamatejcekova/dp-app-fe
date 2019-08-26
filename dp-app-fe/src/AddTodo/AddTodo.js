@@ -16,6 +16,7 @@ class AddTodo extends React.Component{
     }
 
     render(){
+
         return(
             <div className='form'>
                 <form  onSubmit={(e) => this.submitTodo(e)}>
@@ -56,23 +57,22 @@ class AddTodo extends React.Component{
         this.props.history.push(path);
     }
 
-    updatePriority = (e) =>{
+    updatePriority = async (e) =>{
         if(e.target.value !== 'PRIORITY'){
-            console.log('prdiky prd');
-        this.setState({priority: e.target.value});
+        await this.setState({priority: e.target.value});
         }
     };
 
-    updateTitle = (e) =>{
-        this.setState({title: e.target.value});
+    updateTitle = async (e) =>{
+        await this.setState({title: e.target.value});
     };
 
-    updateText = (e) =>{
-        this.setState({text: e.target.value});
+    updateText = async (e) =>{
+        await this.setState({text: e.target.value});
     };
     // 2. add setState updateDate...  3. see app.js
-    updateDate = (e) =>{
-        this.setState({dueDate: e.target.value});
+    updateDate = async (e) =>{
+        await this.setState({dueDate: e.target.value});
     };
 
 
