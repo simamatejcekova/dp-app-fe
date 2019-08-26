@@ -4,6 +4,7 @@ import TodoList from'./TodoList/TodoList.js';
 import AddTodo from'./AddTodo/AddTodo.js';
 import Navbar from'./Navbar/Navbar.js';
 import SearchList from'./SearchList/SearchList.js';
+import FilterList from'./FilterList/FilterList.js';
 import axios from 'axios';
 import moment from "moment";
 import Fuse from '../node_modules/fuse.js';
@@ -48,6 +49,14 @@ class App extends React.Component{
                                     searchFn={this.searchTodos}/>
                     ) }
                 />
+                <Route
+                    path={"/filter-by-date"}
+                    render={()=>(
+                        <FilterList updateTodoFn={this.updateTodo}
+                                    deleteTodoFn={this.deleteTask}
+                                    filterFn={this.filterTodos}/>
+                    ) }
+                />
               </Switch>
             </div>
           </div>
@@ -82,6 +91,11 @@ class App extends React.Component{
     return result;
   };
 
+  filterTodos = async (date) => {
+    let filteredTodos = await axios.get("http://localhost:8080/todos/byDueDate/" + date);
+    return filteredTodos.data;
+  };
+
   addTask = async (todo) => {
     let newTask = {
       title: todo.title,
@@ -92,7 +106,6 @@ class App extends React.Component{
       dueDate: todo.dueDate,
       priority: todo.priority
     };
-    console.log(newTask);
     let taskId = await axios.post("http://localhost:8080/todos", newTask);
     newTask.id = taskId.data;
     await this.setState({todos: [...this.state.todos, newTask]
@@ -101,9 +114,7 @@ class App extends React.Component{
   };
 
   deleteTask = async (todo) => {
-    console.log('deleting');
     await axios.delete("http://localhost:8080/todos/" + todo.id);
-    console.log('deleted');
     const newTodos = this.state.todos.map(_todo => {
           if(todo === _todo) {
             return null; //i have to return SOMETHING, even if i dont want to have anything in place of the todo
@@ -113,15 +124,14 @@ class App extends React.Component{
           //
         }
     );
-    console.log('created newTodos');
     await this.setState({todos:newTodos.filter(Boolean)}); //by using .filter(Boolean), I get rid of the null I returned on line 81
-    console.log('setting state');
   };
 
   updateTodo = async (todo) => {
     const newTodos = this.state.todos.map(_todo => {
       if(todo === _todo){
-        axios.patch("http://localhost:8080/todos/" + todo.id, {finished: !todo.finished});
+        axios.patch("http://localhost:8080/todos/" + todo.id, {finished: !todo.finished, completedAt: moment().format("MMM DD, YYYY, h:mm:ss a"),
+        });
         return {
           title: todo.title,
           text: todo.text,

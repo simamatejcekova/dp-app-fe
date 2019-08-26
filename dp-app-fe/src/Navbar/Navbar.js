@@ -27,6 +27,13 @@ class Navbar extends Component {
                             </Link>
 
                         </li>
+
+                        <li className = "nav-item-filter-by-date">
+                            <Link className={"nav-link"} to={"/filter-by-date"}>
+                                Show by date
+                            </Link>
+
+                        </li>
                     </ul>
                 </div>
             </nav>

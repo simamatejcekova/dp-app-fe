@@ -34,3 +34,7 @@
 .nav-item-search{
     display: inline-block;
 }
+
+.nav-item-filter-by-date{
+    display: inline-block;
+}
