@@ -16,10 +16,12 @@ class TodoItem extends React.Component{
         let now = moment();
 
         let difference = now.diff(todo.createdAt, "minutes");
-        const badge = (difference < 1440) ? <img className={'badge'} src={badgeImg}/> : <p></p>
+        let overduedifference = now.diff(todo.dueDate, "days");
+        const badge = (difference < 1440) ? <img className={'badge'} src={badgeImg}/> : <p></p>;
+        const basedonoverdue = (overduedifference > 0) ? 'speech-bubble overdue' : 'speech-bubble';
 
         return(
-            <div className = {'speech-bubble'}>
+            <div className = {basedonoverdue}>
                 <br />
                 <form>
                     <div className={'title' + (todo.finished ? ' finished' : '')} onClick={this.markFinished}>{todo.title}{badge}</div>

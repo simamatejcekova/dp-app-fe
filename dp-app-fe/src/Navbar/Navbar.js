@@ -7,7 +7,7 @@ class Navbar extends Component {
     render () {
         return (
             <nav className="navbar">
-                <div >
+                <div className ={'navbarContent'}>
                     <ul >
                         <li className="nav-item-todos">
                             <Link className={"nav-link"} to={"/"}>

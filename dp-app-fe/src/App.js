@@ -24,7 +24,7 @@ class App extends React.Component{
           <div className ="App">
             <Navbar/>
 
-            <div>
+            <div className ={'wrapper'}>
               <Switch>
                 <Route
                     path ="/"

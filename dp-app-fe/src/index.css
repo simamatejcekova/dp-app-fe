@@ -3,8 +3,6 @@ body {
   font-family: 'SequentialistBB', "Comic Sans MS",
   sans-serif;
   background-image: url('./img/unicorn.png');
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
 }
 
 @font-face {
@@ -15,7 +13,7 @@ body {
   font-weight: 400;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
-}
+/*code {*/
+/*  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",*/
+/*  monospace;*/
+/*}*/

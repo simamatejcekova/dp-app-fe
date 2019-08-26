@@ -1,6 +1,6 @@
 .speech-bubble {
-    background-image: radial-gradient(white, #fff9b4);
-    border:solid 2px #000;
+    background-image: radial-gradient(white, rgba(255, 249, 180, 0.93));
+    border:solid 4px #000;
     border-radius:3em;
     display:inline-block;
     margin: 2em;
@@ -24,8 +24,8 @@
 
 .speech-bubble:after {
     border:solid 10px transparent;
-    border-left:solid 10px #fff9b4;
-    border-top:solid 10px #fff9b4;
+    border-left:solid 10px rgba(255, 249, 180, 0.93);
+    border-top:solid 10px rgba(255, 249, 180, 0.93);
     bottom:-19px;
     content:"";
     height:0;
@@ -35,13 +35,17 @@
     width:0;
 }
 
+.overdue{
+    background-image: radial-gradient(white, rgba(255, 144, 68, 0.93));
+}
+
 .plusSign{
     margin:3em;
     cursor: pointer;
 }
 
 .todoListContainer{
-    max-width:1200px;
+    max-width:750px;
 }
 
 .task {
